@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* body {
+  font-family: 'Roboto Mono', monospace;
+  font-optical-sizing: auto;
+  font-weight: light;
+  font-style: normal;
+} */
