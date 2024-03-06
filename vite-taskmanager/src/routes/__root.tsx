@@ -10,13 +10,13 @@ const activeProps = {
 export const Route = createRootRoute({
   component: () => {
     const [newTask, setNewTask] = useState('')
-    const { addTask } = useTasks() // Use the addTask method from context
+    const { addTask } = useTasks()
 
     const handleAddTask = () => {
       console.log('newTask!!!:', newTask)
       if (newTask.trim() !== '') {
-        addTask(newTask) // Use the addTask from your TasksProvider
-        setNewTask('') // Reset input field
+        addTask(newTask)
+        setNewTask('')
       }
     }
 
@@ -38,15 +38,12 @@ export const Route = createRootRoute({
             +
           </button>
         </div>
-        <nav className='space-x-20'>
+        <nav className='space-x-9'>
           <Link to='/' activeProps={activeProps}>
-            Short Term Tasks
-          </Link>
-          <Link to='/long-term' activeProps={activeProps}>
-            {({ isActive }) => <>Long Term Tasks{isActive && '*'}</>}
+            Tasks
           </Link>
           <Link to='/done' activeProps={activeProps}>
-            {({ isActive }) => <>Done{isActive && '*'}</>}
+            Done
           </Link>
         </nav>
 

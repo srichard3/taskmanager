@@ -11,16 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as LongTermImport } from './routes/long-term'
 import { Route as DoneImport } from './routes/done'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
-
-const LongTermRoute = LongTermImport.update({
-  path: '/long-term',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const DoneRoute = DoneImport.update({
   path: '/done',
@@ -44,19 +38,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DoneImport
       parentRoute: typeof rootRoute
     }
-    '/long-term': {
-      preLoaderRoute: typeof LongTermImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
-  IndexRoute,
-  DoneRoute,
-  LongTermRoute,
-])
+export const routeTree = rootRoute.addChildren([IndexRoute, DoneRoute])
 
 /* prettier-ignore-end */

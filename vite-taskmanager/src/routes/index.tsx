@@ -5,8 +5,8 @@ import { useTasks, Task } from '../TasksContext'
 export const Route = createFileRoute('/')({
   component: () => {
     const { tasks, editTask, deleteTask } = useTasks()
-    const [editingId, setEditingId] = useState<Date | null>(null) // ID of the task being edited
-    const [editedTask, setEditedTask] = useState('') // New task content
+    const [editingId, setEditingId] = useState<Date | null>(null)
+    const [editedTask, setEditedTask] = useState('')
 
     // Function to handle task edit initiation
     const handleEdit = (task: Task) => {
@@ -17,8 +17,8 @@ export const Route = createFileRoute('/')({
     // Function to save the edited task
     const handleSave = (id: Date) => {
       editTask(id, editedTask)
-      setEditingId(null) // Reset editing state
-      setEditedTask('') // Clear edited task state
+      setEditingId(null)
+      setEditedTask('')
     }
 
     return (
