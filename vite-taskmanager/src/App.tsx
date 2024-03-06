@@ -2,6 +2,7 @@
 import './App.css'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
+import { TasksProvider } from './TasksContext'
 
 const router = createRouter({ routeTree })
 
@@ -19,7 +20,9 @@ function App () {
       <div className='min-h-screen flex items-center justify-center p-4'>
         <div className='bg-gray-100 p-6 rounded shadow-md w-full m-10'>
           <h1 className='text-3xl'>
-            <RouterProvider router={router} />
+            <TasksProvider>
+              <RouterProvider router={router} />
+            </TasksProvider>
           </h1>
         </div>
       </div>
