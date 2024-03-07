@@ -26,6 +26,7 @@ export const Route = createFileRoute('/done')({
                   <button
                     onClick={() => toggleIsDone(task.id)}
                     className='bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-400 hover:to-purple-400 text-white rounded py-2 px-4 shadow-md font-bold'
+                    title='Mark As Incomplete'
                   >
                     Undo
                   </button>
@@ -33,6 +34,7 @@ export const Route = createFileRoute('/done')({
                   <button
                     onClick={() => deleteTask(task.id)}
                     className='bg-gradient-to-r from-red-400 to-red-600 hover:from-red-400 hover:to-red-400 text-white rounded py-2 px-4 shadow-md font-bold'
+                    title='Permanently Delete Task'
                   >
                     ⊖
                   </button>

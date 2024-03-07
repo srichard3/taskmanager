@@ -47,12 +47,13 @@ export const Route = createRootRoute({
                 ? 'bg-gray-300'
                 : 'bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-400'
             } text-white rounded py-2 px-4 shadow-md font-bold`}
+            title='Add Task'
           >
             +
           </button>
         </div>
         {/* Task/Done Routes. */}
-        <nav className='flex justify-center items-center mt-10 mb-10'>
+        <nav className='flex justify-center items-center mt-12 mb-10'>
           <div dir='ltr'>
             <Link
               to='/'

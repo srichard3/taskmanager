@@ -5,6 +5,7 @@ export interface Task {
   id: Date
   task: string
   isDone: boolean
+  dueDate?: string
 }
 
 //  Initialize Task Context and Functions
@@ -14,6 +15,7 @@ interface TasksContextType {
   deleteTask: (id: Date) => void
   editTask: (id: Date, newTask: string) => void
   toggleIsDone: (id: Date) => void
+  setDueDate: (id: Date, dueDate: string) => void
 }
 
 const TasksContext = createContext<TasksContextType | undefined>(undefined)
@@ -73,9 +75,15 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
     )
   }
 
+  const setDueDate = (id: Date, dueDate: string) => {
+    setTasks(tasks =>
+      tasks.map(task => (task.id === id ? { ...task, dueDate } : task))
+    )
+  }
+
   return (
     <TasksContext.Provider
-      value={{ tasks, addTask, deleteTask, editTask, toggleIsDone }}
+      value={{ tasks, addTask, deleteTask, editTask, toggleIsDone, setDueDate }}
     >
       {children}
     </TasksContext.Provider>
