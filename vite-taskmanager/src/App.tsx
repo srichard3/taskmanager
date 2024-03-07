@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import './App.css'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
@@ -13,13 +12,11 @@ declare module '@tanstack/react-router' {
 }
 
 function App () {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
       <div className='min-h-screen flex items-center justify-center p-4'>
-        <div className='bg-gray-100 p-6 rounded shadow-md w-full m-10'>
-          <h1 className='text-3xl'>
+        <div className='bg-gray-100 px-6 rounded shadow-md w-full mx-10 my-4'>
+          <h1 className='text-4xl'>
             <TasksProvider>
               <RouterProvider router={router} />
             </TasksProvider>

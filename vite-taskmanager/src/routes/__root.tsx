@@ -3,17 +3,19 @@ import logoPath from '../assets/TaskManager-Logo.png'
 import { useState } from 'react'
 import { useTasks } from '../TasksContext'
 
+// Bolds the active route
 const activeProps = {
   style: { fontWeight: 'bold' }
 }
 
 export const Route = createRootRoute({
   component: () => {
+    // Initialize tasks and TaskContecxt functionality
     const [newTask, setNewTask] = useState('')
     const { addTask } = useTasks()
 
-    const handleAddTask = () => {
-      console.log('newTask!!!:', newTask)
+    // Function to add a new task
+    const initiateAddTask = () => {
       if (newTask.trim() !== '') {
         addTask(newTask)
         setNewTask('')
@@ -22,8 +24,10 @@ export const Route = createRootRoute({
 
     return (
       <>
+        {/* TaskManager Title/Logo. */}
         <img src={logoPath} alt='TaskManager logo' className='w-1/2' />
         <div className='space-x-4 mb-4'>
+          {/* Input field for new tasks. */}
           <input
             type='text'
             placeholder='Enter a task here.'
@@ -31,14 +35,16 @@ export const Route = createRootRoute({
             value={newTask}
             onChange={e => setNewTask(e.target.value)}
           />
+          {/* Button to add new tasks. */}
           <button
-            onClick={handleAddTask}
+            onClick={initiateAddTask}
             className='bg-gradient-to-r from-emerald-400 to-emerald-600 hover:from-green-400 hover:to-green-400 text-white rounded py-2 px-4 shadow-md font-bold'
           >
             +
           </button>
         </div>
-        <nav className='space-x-9'>
+        {/* Task/Done Routes. */}
+        <nav className='space-x-9 mx-3 my-2'>
           <Link to='/' activeProps={activeProps}>
             Tasks
           </Link>

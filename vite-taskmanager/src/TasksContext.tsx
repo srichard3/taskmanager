@@ -23,12 +23,23 @@ export const useTasks = () => {
 }
 
 interface TasksProviderProps {
-  children: ReactNode // Define the type for children here
+  children: ReactNode
 }
 
 export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
-  // Use the interface here
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      id: new Date('2023-01-01'),
+      task: 'Create your first task!',
+      isDone: false
+    },
+    { id: new Date('2023-02-01'), task: 'Try to edit a task!', isDone: false },
+    {
+      id: new Date('2023-03-01'),
+      task: 'Start using TaskManager!',
+      isDone: true
+    }
+  ])
 
   const addTask = (task: string) => {
     if (task.trim() !== '') {
