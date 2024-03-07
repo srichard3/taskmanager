@@ -32,6 +32,7 @@ interface TasksProviderProps {
 }
 
 export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
+  // initialize starter tasks
   const [tasks, setTasks] = useState<Task[]>([
     {
       id: new Date('2023-01-01'),
@@ -50,16 +51,19 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
     }
   ])
 
+  // Function to add a new task
   const addTask = (task: string) => {
     if (task.trim() !== '') {
       setTasks(tasks => [...tasks, { id: new Date(), task, isDone: false }])
     }
   }
 
+  // Function to delete a task
   const deleteTask = (id: Date) => {
     setTasks(tasks => tasks.filter(task => task.id !== id))
   }
 
+  // Function to toggle a task's isDone status
   const toggleIsDone = (id: Date) => {
     setTasks(tasks =>
       tasks.map(task =>
@@ -69,12 +73,14 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
     console.log('TOGGLE!', tasks)
   }
 
+  // Function to edit a task
   const editTask = (id: Date, newTask: string) => {
     setTasks(tasks =>
       tasks.map(task => (task.id === id ? { ...task, task: newTask } : task))
     )
   }
 
+  // Function to set a task's due date
   const setDueDate = (id: Date, dueDate: string) => {
     setTasks(tasks =>
       tasks.map(task => (task.id === id ? { ...task, dueDate } : task))

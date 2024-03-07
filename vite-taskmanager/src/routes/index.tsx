@@ -32,6 +32,11 @@ export const Route = createFileRoute('/')({
       resetEditedTask('')
     }
 
+    const saveDueDate = (id: Date) => {
+      setDueDate(id, tempDueDate)
+      resetSelectingDueDateFor(null)
+    }
+
     return (
       <div className='flex justify-center p-4'>
         <div className='bg-gray-100 p-6 rounded shadow-md w-full max-w-4xl'>
@@ -56,10 +61,6 @@ export const Route = createFileRoute('/')({
                       type='date'
                       value={tempDueDate}
                       onChange={e => resetTempDueDate(e.target.value)}
-                      onBlur={() => {
-                        setDueDate(task.id, tempDueDate)
-                        resetSelectingDueDateFor(null)
-                      }}
                       className='mx-2'
                     />
                   )}
@@ -80,15 +81,15 @@ export const Route = createFileRoute('/')({
                     {editingId === task.id ? (
                       <button
                         onClick={() => saveEdit(task.id)}
-                        className='bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-400 hover:to-blue-400 text-white rounded py-2 px-4 shadow-md font-bold'
+                        className='animate-pulse bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-400 hover:to-blue-400 text-white rounded py-2 px-4 shadow-md font-bold'
                         title='Save Changes'
                       >
                         Save
                       </button>
                     ) : (
                       <button
-                        onClick={() => saveEdit(task.id)}
-                        className='bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-400 hover:to-blue-400 text-white rounded py-2 px-4 shadow-md font-bold'
+                        onClick={() => saveDueDate(task.id)}
+                        className='animate-pulse bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-400 hover:to-blue-400 text-white rounded py-2 px-4 shadow-md font-bold'
                         title='Save Changes'
                       >
                         Save
