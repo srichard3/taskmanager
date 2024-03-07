@@ -4,8 +4,8 @@ import { useTasks, Task } from '../TasksContext'
 
 export const Route = createFileRoute('/')({
   component: () => {
-    // Initialize tasks and TaskContecxt functionality
-    const { tasks, editTask, deleteTask, toggleIsDone } = useTasks()
+    // Initialize tasks and TaskContext functionality
+    const { tasks, editTask, toggleIsDone } = useTasks()
 
     // Initialize state for editing tasks
     const [editingId, setEditingId] = useState<Date | null>(null)
@@ -28,7 +28,7 @@ export const Route = createFileRoute('/')({
     }
 
     return (
-      <div className='min-h-screen flex items-center justify-center p-4'>
+      <div className='flex justify-center p-4'>
         <div className='bg-gray-100 p-6 rounded shadow-md w-full max-w-4xl'>
           {/* List of tasks. */}
           {notDoneTasks.map(task => (
@@ -42,7 +42,7 @@ export const Route = createFileRoute('/')({
                   type='text'
                   value={editedTask}
                   onChange={e => setEditedTask(e.target.value)}
-                  className='flex-1 mr-2 p-2'
+                  className='flex-1 mr-2 p-2 hover:outline-none hover:ring-2 hover:ring-gray-300 hover:border-transparent'
                 />
               ) : (
                 // Task content.
@@ -72,13 +72,6 @@ export const Route = createFileRoute('/')({
                       className='bg-gradient-to-r from-green-400 to-green-600 hover:from-green-400 hover:to-green-400 text-white rounded py-2 px-4 shadow-md font-bold'
                     >
                       ✓
-                    </button>
-                    {/* Delete button to permanently delete a task. */}
-                    <button
-                      onClick={() => deleteTask(task.id)}
-                      className='bg-gradient-to-r from-red-400 to-red-600 hover:from-red-400 hover:to-red-400 text-white rounded py-2 px-4 shadow-md font-bold'
-                    >
-                      ⊖
                     </button>
                   </>
                 )}

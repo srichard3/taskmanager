@@ -10,7 +10,7 @@ export const Route = createFileRoute('/done')({
     const doneTasks = tasks.filter(task => task.isDone)
 
     return (
-      <div className='min-h-screen flex items-center justify-center p-4'>
+      <div className='flex justify-center p-4'>
         <div className='bg-gray-100 p-6 rounded shadow-md w-full max-w-4xl'>
           {/* List of tasks. */}
           {doneTasks.map(task => (
@@ -25,7 +25,7 @@ export const Route = createFileRoute('/done')({
                   {/* Undo button to bring a task back to Active Tasks. */}
                   <button
                     onClick={() => toggleIsDone(task.id)}
-                    className='bg-gradient-to-r from-green-400 to-green-600 hover:from-green-400 hover:to-green-400 text-white rounded py-2 px-4 shadow-md font-bold'
+                    className='bg-gradient-to-r from-purple-400 to-purple-600 hover:from-purple-400 hover:to-purple-400 text-white rounded py-2 px-4 shadow-md font-bold'
                   >
                     Undo
                   </button>

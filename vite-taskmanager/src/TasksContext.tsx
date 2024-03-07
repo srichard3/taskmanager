@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
+//  Initialize Task structure
 export interface Task {
   id: Date
   task: string
   isDone: boolean
 }
 
+//  Initialize Task Context and Functions
 interface TasksContextType {
   tasks: Task[]
   addTask: (task: string) => void
@@ -16,6 +18,7 @@ interface TasksContextType {
 
 const TasksContext = createContext<TasksContextType | undefined>(undefined)
 
+//  Initialize useTask hook
 export const useTasks = () => {
   const context = useContext(TasksContext)
   if (!context) throw new Error('useTasks must be used within a TasksProvider')
@@ -33,7 +36,11 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
       task: 'Create your first task!',
       isDone: false
     },
-    { id: new Date('2023-02-01'), task: 'Try to edit a task!', isDone: false },
+    {
+      id: new Date('2023-02-01'),
+      task: 'Try to edit this task!',
+      isDone: false
+    },
     {
       id: new Date('2023-03-01'),
       task: 'Start using TaskManager!',
