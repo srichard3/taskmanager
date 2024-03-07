@@ -1,7 +1,7 @@
 import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
 import logoPath from '../assets/TaskManager-Logo.png'
 import { useState } from 'react'
-import { TasksProvider, useTasks } from '../TasksContext'
+import { useTasks } from '../TasksContext'
 
 const activeProps = {
   style: { fontWeight: 'bold' }

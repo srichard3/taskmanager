@@ -4,9 +4,10 @@ import { useTasks, Task } from '../TasksContext'
 
 export const Route = createFileRoute('/')({
   component: () => {
-    const { tasks, editTask, deleteTask } = useTasks()
+    const { tasks, editTask, deleteTask, toggleIsDone } = useTasks()
     const [editingId, setEditingId] = useState<Date | null>(null)
     const [editedTask, setEditedTask] = useState('')
+    const notDoneTasks = tasks.filter(task => !task.isDone)
 
     // Function to handle task edit initiation
     const handleEdit = (task: Task) => {
@@ -24,7 +25,7 @@ export const Route = createFileRoute('/')({
     return (
       <div className='min-h-screen flex items-center justify-center p-4'>
         <div className='bg-gray-100 p-6 rounded shadow-md w-full max-w-4xl'>
-          {tasks.map(task => (
+          {notDoneTasks.map(task => (
             <li
               key={task.id.toString()}
               className='flex justify-between items-center mb-3 bg-white p-4 rounded shadow-md'
@@ -55,8 +56,9 @@ export const Route = createFileRoute('/')({
                     >
                       ✎
                     </button>
+
                     <button
-                      onClick={() => deleteTask(task.id)}
+                      onClick={() => toggleIsDone(task.id)}
                       className='bg-gradient-to-r from-green-400 to-green-600 hover:from-green-400 hover:to-green-400 text-white rounded py-2 px-4 shadow-md font-bold'
                     >
                       ✓

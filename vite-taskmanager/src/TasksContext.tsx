@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react'
 export interface Task {
   id: Date
   task: string
+  isDone: boolean
 }
 
 interface TasksContextType {
@@ -10,6 +11,7 @@ interface TasksContextType {
   addTask: (task: string) => void
   deleteTask: (id: Date) => void
   editTask: (id: Date, newTask: string) => void
+  toggleIsDone: (id: Date) => void
 }
 
 const TasksContext = createContext<TasksContextType | undefined>(undefined)
@@ -30,12 +32,21 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
 
   const addTask = (task: string) => {
     if (task.trim() !== '') {
-      setTasks(tasks => [...tasks, { id: new Date(), task }])
+      setTasks(tasks => [...tasks, { id: new Date(), task, isDone: false }])
     }
   }
 
   const deleteTask = (id: Date) => {
     setTasks(tasks => tasks.filter(task => task.id !== id))
+  }
+
+  const toggleIsDone = (id: Date) => {
+    setTasks(tasks =>
+      tasks.map(task =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task
+      )
+    )
+    console.log('TOGGLE!', tasks)
   }
 
   const editTask = (id: Date, newTask: string) => {
@@ -44,10 +55,10 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
     )
   }
 
-  console.log('tasks:', tasks)
-
   return (
-    <TasksContext.Provider value={{ tasks, addTask, deleteTask, editTask }}>
+    <TasksContext.Provider
+      value={{ tasks, addTask, deleteTask, editTask, toggleIsDone }}
+    >
       {children}
     </TasksContext.Provider>
   )
