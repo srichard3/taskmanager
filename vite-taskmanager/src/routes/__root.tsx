@@ -5,7 +5,11 @@ import { useTasks } from '../TasksContext'
 
 // Bolds the active route
 const activeProps = {
-  style: { fontWeight: 'bold' }
+  style: {
+    //fontWeight: 'bold',
+    //boxShadow: '0 0 8px 2px rgba(252, 211, 77, 0.6)',
+    backgroundColor: 'rgba(252, 211, 77, 0.6)'
+  }
 }
 
 export const Route = createRootRoute({
@@ -38,19 +42,35 @@ export const Route = createRootRoute({
           {/* Button to add new tasks. */}
           <button
             onClick={initiateAddTask}
-            className='bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-400 text-white rounded py-2 px-4 shadow-md font-bold'
+            className={`${
+              newTask.trim().length === 0
+                ? 'bg-gray-300'
+                : 'bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-400 hover:to-amber-400'
+            } text-white rounded py-2 px-4 shadow-md font-bold`}
           >
             +
           </button>
         </div>
         {/* Task/Done Routes. */}
-        <nav className='space-x-20 flex justify-center items-center mt-10 mb-10'>
-          <Link to='/' activeProps={activeProps}>
-            {({ isActive }) => <>{isActive && '⏺'} Tasks</>}
-          </Link>
-          <Link to='/done' activeProps={activeProps}>
-            {({ isActive }) => <>Done {isActive && '⏺'}</>}
-          </Link>
+        <nav className='flex justify-center items-center mt-10 mb-10'>
+          <div dir='ltr'>
+            <Link
+              to='/'
+              activeProps={activeProps}
+              className='bg-white rounded-s-full px-6 py-2 shadow-md'
+            >
+              Tasks
+            </Link>
+          </div>
+          <div dir='rtl'>
+            <Link
+              to='/done'
+              activeProps={activeProps}
+              className='bg-white rounded-s-full px-6 py-2 shadow-md'
+            >
+              Done
+            </Link>
+          </div>
         </nav>
 
         <Outlet />
